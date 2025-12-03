@@ -111,18 +111,167 @@
                         <span class="badge-text"> 🛡️  Điểm Sạch: 95/100 (Chi tiết)</span>
                     </div>
                 </div>
-                <div class="menu-grid">
-                    <div class="meal-card">
-                        <h4> 🍗  Cơm Gà Xối Mỡ</h4><p>35.000đ</p>
-                        <button class="btn-order-meal" onclick="addToCart('Cơm Gà Xối Mỡ', 35000, 'khu1')">Thêm vào giỏ</button>
-                    </div>
-                    <div class="meal-card">
-                        <h4> 🍖  Cơm Sườn Nướng</h4><p>40.000đ</p>
-                        <button class="btn-order-meal" onclick="addToCart('Cơm Sườn Nướng', 40000, 'khu1')">Thêm vào giỏ</button>
+
+                <div class="sub-tabs-container">
+                    <button class="sub-tab-btn active" onclick="switchSubTab('chien-nuong', this)">🔥 Món chiên – nướng</button>
+                    <button class="sub-tab-btn" onclick="switchSubTab('nuoc-uong', this)">🥤 Món nước - đồ uống</button>
+                    <button class="sub-tab-btn" onclick="switchSubTab('an-vat', this)">🥪 Ăn vặt no bụng</button>
+                    <button class="sub-tab-btn" onclick="switchSubTab('do-ngot', this)">🍧 Đồ ngọt – tráng miệng</button>
+                </div>
+
+                <div id="chien-nuong" class="sub-content active">
+                    <div class="menu-grid">
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/2021/09/CookRecipe/Avatar/120000.jpg" alt="Khoai tây chiên">
+                            <h4>🍟 Khoai tây chiên</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Khoai tây chiên', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://static-images.vnncdn.net/files/publish/2023/4/27/khoai-lang-ken-520.jpg" alt="Khoai lang kén">
+                            <h4>🥔 Khoai lang kén</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Khoai lang kén', 12000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://th.bing.com/th/id/R.4015bfcd66a80729047c871b4f512951?rik=IbKA3WtHS9xQig&pid=ImgRaw&r=0" alt="Xúc xích Đức">
+                            <h4>🌭 Xúc xích Đức nướng</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Xúc xích Đức nướng', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://tse3.mm.bing.net/th/id/OIP.q4RPSlUKBh9vcACWLe7y1AAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Hồ lô chiên">
+                            <h4>🍢 Hồ lô chiên</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Hồ lô chiên', 12000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://tse1.explicit.bing.net/th/id/OIP.6_Gcmld2owpFapkRafO7BAHaEJ?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Cá viên chiên">
+                            <h4>🐟 Cá viên chiên</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Cá viên chiên', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn11.dienmaycholon.vn/filewebdmclnew/public/userupload/files/kien-thuc/cach-lam-bo-vien-chien/cach-lam-bo-vien-chien-6.jpg" alt="Bò viên chiên">
+                            <h4>🐮 Bò viên chiên</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bò viên chiên', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://img-global.cpcdn.com/recipes/78a648f8678001d3/1200x630cq80/photo.jpg" alt="Gà viên chiên">
+                            <h4>🐔 Gà viên chiên</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Gà viên chiên', 12000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn2.fptshop.com.vn/unsafe/Uploads/images/tin-tuc/185855/Originals/dau-hu-pho-mai-04.jpg" alt="Đậu hũ phô mai">
+                            <h4>🧀 Đậu hũ phô mai</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Đậu hũ phô mai chiên', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
                     </div>
                 </div>
+
+                <div id="nuoc-uong" class="sub-content">
+                     <div class="menu-grid">
+                        <div class="meal-card">
+                            <img src="https://product.hstatic.net/200000768759/product/tra-tac-mat-ong-hoa-nhan_8536365b1847445093bd12ba75e33634.png" alt="Trà tắc">
+                            <h4>🍊 Trà tắc</h4><p>10.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Trà tắc', 10000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://png.pngtree.com/png-clipart/20250612/original/pngtree-refreshing-iced-peach-tea-in-plastic-cup-with-peaches-png-image_21181504.png" alt="Trà đào">
+                            <h4>🍑 Trà đào</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Trà đào', 12000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://www.unileverfoodsolutions.com.vn/dam/global-ufs/mcos/phvn/vietnam/calcmenu/recipes/VN-recipes/other/energizing-lemon-tea/main-header.jpg" alt="Trà chanh">
+                            <h4>🍋 Trà chanh</h4><p>10.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Trà chanh', 10000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://image.foodbook.vn/upload/20220512/1652331339589_blob.png" alt="Nước sâm">
+                            <h4>🌿 Nước sâm</h4><p>8.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Nước sâm', 8000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://atpsoftware.vn/wp-content/uploads/2020/03/S%E1%BB%AFa-t%C6%B0%E1%BB%9Di-%C4%91%C6%B0%E1%BB%9Dng-%C4%91en.png">
+                            <h4>🧋 Sữa tươi TCĐĐ (Nhỏ)</h4><p>18.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Sữa tươi TCĐĐ (nhỏ)', 18000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://product.hstatic.net/200000561069/product/sodachanh-01_4dfe10cb977c49e4ad057301e3eb8470_master.jpg" alt="Soda">
+                            <h4>🥤 Soda Bạc hà/Chanh</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Soda Bạc hà/Chanh', 12000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="an-vat" class="sub-content">
+                     <div class="menu-grid">
+                        <div class="meal-card">
+                            <img src="https://canthoriviu.vn/wp-content/uploads/2022/08/78.jpg" alt="Bánh tráng trộn">
+                            <h4>🥗 Bánh tráng trộn</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bánh tráng trộn', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://mikiri.com.vn/wp-content/uploads/2024/12/banh-trang-cuon-sot-me-jpeg.jpg" alt="Bánh tráng cuốn">
+                            <h4>🌯 Bánh tráng cuốn sốt me</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bánh tráng cuốn sốt me', 12000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn2.fptshop.com.vn/unsafe/Uploads/images/tin-tuc/162644/Originals/banh-trang-nuong-1.jpg" alt="Bánh tráng nướng">
+                            <h4>🍕 Bánh tráng nướng</h4><p>20.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bánh tráng nướng', 20000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/Files/2022/03/31/1423319/cach-lam-banh-mi-cha-bong-sot-dau-trung-beo-thom-mem-min-202203312345109610.jpg" alt="Bánh mì chà bông">
+                            <h4>🥖 Bánh mì chà bông</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bánh mì chà bông', 12000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2024/8/27/z57720652549144aaee04cbca05a3fa237576a65757686-172475040959263570047.jpg" alt="Bánh mì pate">
+                            <h4>🥖 Bánh mì pate</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bánh mì pate', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://img.mservice.com.vn/common/u/05e07d15ed1a84ee51cdfe60756960e55412b5dcd748a2e496a53522eb6597fa/8b31364b-57cc-41e7-abda-45b7336fbe41g070udaq.jpg" alt="Mì trộn sa tế">
+                            <h4>🍝 Mì trộn sa tế</h4><p>18.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Mì trộn sa tế', 18000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/Files/2022/03/10/1419485/cach-nau-xoi-man-thap-cam-bang-noi-com-dien-deo-mem-ngon-nhu-me-nau-202203100655280146.jpg" alt="Xôi mặn">
+                            <h4>🍚 Xôi mặn</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Xôi mặn', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="do-ngot" class="sub-content">
+                     <div class="menu-grid">
+                        <div class="meal-card">
+                            <img src="https://kemmingo.com/images/kem-vien-kem-ky-123.png" alt="Kem viên">
+                            <h4>🍦 Kem viên</h4><p>10.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Kem viên', 10000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cheduathailan.vn/wp-content/uploads/2021/08/che-thai-sau-hoa-qua.png" alt="Chè thái">
+                            <h4>🍧 Chè thái</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Chè thái', 15000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://png.pngtree.com/png-vector/20231122/ourmid/pngtree-galantine-cube-green-meat-jelly-png-image_10614675.png" alt="Rau câu dừa">
+                            <h4>🥥 Rau câu dừa</h4><p>8.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Rau câu dừa', 8000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://png.pngtree.com/png-clipart/20241127/original/pngtree-wooden-bowl-of-yogurt-png-image_17330352.png" alt="Yogurt mít">
+                            <h4>🥣 Yogurt mít</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Yogurt mít', 12000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://bazaarvietnam.vn/wp-content/uploads/2021/09/dau-den-xanh-long-lam-dep-da-amazon.jpg" alt="Chè đậu">
+                            <h4>🥣 Chè đậu đen/xanh</h4><p>10.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Chè đậu đen/xanh', 10000, 'khu1')">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
         <div id="khu2" class="area-content">
             <div class="restaurant-card">
                 <div class="restaurant-header">
@@ -133,7 +282,16 @@
                     </div>
                 </div>
                 <div class="menu-grid">
-                    <div class="meal-card"><h4> 🍚  Cơm Tấm Sườn</h4><p>45.000đ</p><button class="btn-order-meal" onclick="addToCart('Cơm Tấm Sườn', 45000, 'khu2')">Thêm vào giỏ</button></div>
+                    <div class="meal-card">
+                        <img src="https://via.placeholder.com/300x200?text=Com+Tam" alt="Cơm Tấm">
+                        <h4> 🍚  Cơm Tấm Sườn</h4><p>45.000đ</p>
+                        <button class="btn-order-meal" onclick="addToCart('Cơm Tấm Sườn', 45000, 'khu2')">Thêm vào giỏ</button>
+                    </div>
+                    <div class="meal-card">
+                         <img src="https://via.placeholder.com/300x200?text=Ga+Ran" alt="Gà Rán">
+                        <h4> 🍗  Gà Rán Cầu Giấy</h4><p>35.000đ</p>
+                        <button class="btn-order-meal" onclick="addToCart('Gà Rán Cầu Giấy', 35000, 'khu2')">Thêm vào giỏ</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -147,7 +305,11 @@
                     </div>
                 </div>
                 <div class="menu-grid">
-                    <div class="meal-card"><h4> 🍖  Sườn Ram Mặn</h4><p>35.000đ</p><button class="btn-order-meal" onclick="addToCart('Sườn Ram Mặn', 35000, 'khu3')">Thêm vào giỏ</button></div>
+                    <div class="meal-card">
+                        <img src="https://via.placeholder.com/300x200?text=Suon+Ram" alt="Sườn Ram">
+                        <h4> 🍖  Sườn Ram Mặn</h4><p>35.000đ</p>
+                        <button class="btn-order-meal" onclick="addToCart('Sườn Ram Mặn', 35000, 'khu3')">Thêm vào giỏ</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,7 +323,11 @@
                     </div>
                 </div>
                 <div class="menu-grid">
-                    <div class="meal-card"><h4> 🍤  Tôm Rim Thịt</h4><p>45.000đ</p><button class="btn-order-meal" onclick="addToCart('Tôm Rim Thịt', 45000, 'khu4')">Thêm vào giỏ</button></div>
+                    <div class="meal-card">
+                         <img src="https://via.placeholder.com/300x200?text=Tom+Rim" alt="Tôm Rim">
+                        <h4> 🍤  Tôm Rim Thịt</h4><p>45.000đ</p>
+                        <button class="btn-order-meal" onclick="addToCart('Tôm Rim Thịt', 45000, 'khu4')">Thêm vào giỏ</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,13 +336,10 @@
     <div id="order" class="page container">
         <div class="order-section">
             <h2 style="color:#27ae60; margin-bottom:1.5rem; text-align:center;"> 🛒  Giỏ Hàng Của Bạn</h2>
-            
             <div id="cartListContainer" class="cart-container"></div>
-
             <div class="cart-total-section">
                 Tổng cộng: <strong id="cartTotal" style="color: #d35400;">0đ</strong>
             </div>
-
             <div class="checkout-form">
                 <h3 style="margin-bottom: 1rem; border-top: 1px solid #eee; padding-top: 1rem;">Thông tin nhận hàng</h3>
                 <form id="orderForm">
@@ -188,7 +351,6 @@
                         <label>Số điện thoại *</label>
                         <input type="tel" id="customerPhone" placeholder="09xxxxxxx">
                     </div>
-                    
                     <div class="form-group">
                         <label> 📍  Chọn Khu Vực *</label>
                         <select id="areaSelect" class="styled-select" onchange="loadUniversities()">
@@ -199,14 +361,12 @@
                             <option value="khu4">Khu 4: Chùa Láng</option>
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label> 🏫  Chọn Trường (Điểm nhận hàng) *</label>
                         <select id="pickupSelect" class="styled-select" disabled>
                             <option value="">-- Chọn khu vực trước --</option>
                         </select>
                     </div>
-
                     <button type="button" class="btn-order" onclick="submitOrder()"> ✅  Chốt Đơn & Thanh Toán</button>
                 </form>
             </div>

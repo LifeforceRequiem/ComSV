@@ -21,11 +21,18 @@ const qualityDB = {
     'Quán Ngon Chùa Láng': { score: 97, grade: 'A', color: '#27ae60', certs: ['VSATTP', 'ISO', 'HACCP'], criteria: { 'Vệ sinh bếp': 99, 'Nguồn gốc': 98, 'Quy trình': 96, 'Bảo quản': 97, 'Nhân viên': 95 }, history: [{date: '05/11/2025', score: 97, who: 'Thanh Tra'}] }
 };
 
-// --- LOGIC GIỎ HÀNG (CẬP NHẬT SỐ LƯỢNG) ---
+// --- LOGIC MENU CON (SUB-TABS) ---
+function switchSubTab(subId, btnElement) {
+    document.querySelectorAll('.sub-content').forEach(el => el.classList.remove('active'));
+    document.getElementById(subId).classList.add('active');
+    document.querySelectorAll('.sub-tab-btn').forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+}
+
+// --- LOGIC GIỎ HÀNG ---
 let cart = [];
 
 function addToCart(mealName, price, areaKey) {
-    // 1. Kiểm tra logic Single Area
     if (cart.length > 0 && cart[0].area !== areaKey) {
         let confirmSwitch = confirm(`Giỏ hàng đang có món của ${getAreaName(cart[0].area)}.\nBạn chỉ được đặt món cùng 1 khu vực.\n\nXóa giỏ hàng cũ để đặt món mới?`);
         if (confirmSwitch) {
@@ -35,7 +42,6 @@ function addToCart(mealName, price, areaKey) {
         }
     }
 
-    // 2. Logic thêm vào giỏ: Nếu có rồi thì tăng số lượng
     const existingItem = cart.find(item => item.name === mealName);
     if (existingItem) {
         existingItem.quantity++;
@@ -57,21 +63,17 @@ function addToCart(mealName, price, areaKey) {
 }
 
 function updateCartCountUI() {
-    // Đếm tổng số lượng item
     const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
     document.getElementById('cartCount').innerText = `(${totalCount})`;
 }
 
-// Hàm thay đổi số lượng trong giỏ hàng
 function changeQuantity(index, delta) {
     cart[index].quantity += delta;
-    
-    // Nếu giảm về 0 thì xóa luôn
     if (cart[index].quantity <= 0) {
         removeFromCart(index);
     } else {
         updateCartCountUI();
-        openCartPage(); // Re-render lại để cập nhật giá
+        openCartPage();
     }
 }
 
@@ -81,7 +83,7 @@ function removeFromCart(index) {
     openCartPage(); 
 }
 
-// --- LOGIC TRANG CHECKOUT (HIỂN THỊ NÚT SỐ LƯỢNG) ---
+// --- LOGIC TRANG CHECKOUT ---
 function openCartPage() {
     navigateTo('order');
     const container = document.getElementById('cartListContainer');
@@ -98,20 +100,18 @@ function openCartPage() {
     } else {
         let total = 0;
         cart.forEach((item, index) => {
-            total += item.price * item.quantity; // Tính tổng theo số lượng
+            total += item.price * item.quantity;
             container.innerHTML += `
                 <div class="cart-item">
                     <div class="cart-item-info">
                         <strong>${item.name}</strong>
                         <small>${item.price.toLocaleString()}đ</small>
                     </div>
-                    
                     <div class="quantity-controls">
                         <button class="btn-qty" onclick="changeQuantity(${index}, -1)">-</button>
                         <span class="qty-val">${item.quantity}</span>
                         <button class="btn-qty" onclick="changeQuantity(${index}, 1)">+</button>
                     </div>
-
                     <div class="cart-item-remove" onclick="removeFromCart(${index})">&times;</div>
                 </div>`;
         });
@@ -142,7 +142,6 @@ function loadUniversities() {
     }
 }
 
-// --- LOGIC CHỐT ĐƠN ---
 function submitOrder() {
     const name = document.getElementById('customerName').value;
     const phone = document.getElementById('customerPhone').value;
