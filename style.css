@@ -90,9 +90,9 @@ nav a:hover, nav a.active { background: rgba(255,255,255,0.2); }
 .sub-content { display: none; padding: 1rem; animation: fadeIn 0.5s ease; }
 .sub-content.active { display: block; }
 
-.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
 
-/* CẬP NHẬT MEAL CARD ĐỂ CÓ ẢNH */
+/* MEAL CARD */
 .meal-card { 
     background: white; 
     border-radius: 12px; 
@@ -106,13 +106,15 @@ nav a:hover, nav a.active { background: rgba(255,255,255,0.2); }
 }
 .meal-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
-/* Style cho ảnh món ăn */
+/* ẢNH ĐẸP KHÔNG MÉO */
 .meal-card img {
-    width: 100%;
-    height: 200px; /* Chiều cao cố định để menu đều nhau */
-    object-fit: cover; /* Cắt ảnh vừa khung mà không bị méo */
+    height: 200px;
+    width: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto 10px auto;
+    object-fit: contain;
     border-radius: 8px;
-    margin-bottom: 10px;
 }
 
 .meal-card h4 { margin-bottom: 5px; font-size: 1.1rem; }
@@ -171,3 +173,32 @@ nav a:hover, nav a.active { background: rgba(255,255,255,0.2); }
 .certifications { display: flex; gap: 10px; margin: 10px 0; }
 .cert-tag { background: #e3f2fd; color: #1565c0; padding: 4px 10px; border-radius: 15px; font-size: 0.85rem; font-weight: bold; border: 1px solid #90caf9; }
 .history-item { display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #ccc; }
+/* PAYMENT MODAL STYLES */
+.payment-content {
+    max-width: 500px !important;
+}
+.payment-methods {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.method-card {
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    width: 45%;
+    transition: all 0.3s;
+}
+.method-card:hover {
+    border-color: #27ae60;
+    background-color: #f9fff9;
+}
+.method-card.active {
+    border-color: #27ae60;
+    background-color: #e8f5e9;
+    color: #27ae60;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.2);
+}

@@ -23,9 +23,17 @@ const qualityDB = {
 
 // --- LOGIC MENU CON (SUB-TABS) ---
 function switchSubTab(subId, btnElement) {
-    document.querySelectorAll('.sub-content').forEach(el => el.classList.remove('active'));
+    // Tìm area cha của nút được bấm
+    const parentArea = btnElement.closest('.area-content');
+    
+    // Ẩn tất cả sub-content TRONG KHU VỰC ĐÓ
+    parentArea.querySelectorAll('.sub-content').forEach(el => el.classList.remove('active'));
+    
+    // Hiện sub-content được chọn
     document.getElementById(subId).classList.add('active');
-    document.querySelectorAll('.sub-tab-btn').forEach(btn => btn.classList.remove('active'));
+    
+    // Xử lý trạng thái nút bấm
+    parentArea.querySelectorAll('.sub-tab-btn').forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
 }
 
@@ -142,12 +150,17 @@ function loadUniversities() {
     }
 }
 
+// --- LOGIC THANH TOÁN MỚI ---
+let selectedPaymentMethod = 'cash'; // Mặc định là tiền mặt
+
+// 1. Hàm kiểm tra thông tin & Mở Modal thanh toán
 function submitOrder() {
     const name = document.getElementById('customerName').value;
     const phone = document.getElementById('customerPhone').value;
     const area = document.getElementById('areaSelect').value;
     const pickup = document.getElementById('pickupSelect').value;
 
+    // Validate dữ liệu
     if (cart.length === 0) { alert('Giỏ hàng trống!'); return; }
     if (!name || !phone) { alert('Vui lòng nhập tên và SĐT!'); return; }
     
@@ -160,21 +173,89 @@ function submitOrder() {
 
     if (!pickup) { alert('Vui lòng chọn trường đại học cụ thể!'); return; }
 
+    // Nếu thông tin OK -> Mở Modal chọn phương thức thanh toán
+    document.getElementById('paymentModal').style.display = 'block';
+    
+    // Reset về mặc định là tiền mặt mỗi khi mở lại
+    selectPaymentMethod('cash');
+}
+
+// 2. Hàm chọn phương thức (Click vào ô Tiền mặt hoặc QR)
+function selectPaymentMethod(method) {
+    selectedPaymentMethod = method;
+    
+    // Cập nhật giao diện (Active class)
+    document.getElementById('method-cash').classList.remove('active');
+    document.getElementById('method-qr').classList.remove('active');
+    document.getElementById(`method-${method}`).classList.add('active');
+
+    // Hiển thị QR nếu chọn chuyển khoản
+    const qrContainer = document.getElementById('qrContainer');
+    if (method === 'qr') {
+        qrContainer.style.display = 'block';
+        
+        // (Tùy chọn) Cập nhật giá tiền vào QR code cho xịn
+        // Tính tổng tiền
+        let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        // Cập nhật lại src ảnh QR với số tiền thực tế (Dùng api vietqr demo)
+        const qrImg = qrContainer.querySelector('img');
+        qrImg.src = `https://api.vietqr.io/image/970415-113366668888-25w7J0k.jpg?accountName=COMSV&amount=${total}&addInfo=Thanh toan don hang`;
+        
+    } else {
+        qrContainer.style.display = 'none';
+    }
+}
+
+// 3. Hàm xử lý khi ấn nút "Tiếp theo"
+function confirmPayment() {
+    closePaymentModal(); // Đóng modal chọn phương thức
+
+    if (selectedPaymentMethod === 'qr') {
+        // Nếu là QR -> Hiện thông báo thành công trước
+        alert('✅ Thanh toán chuyển khoản thành công!\nCảm ơn bạn đã thanh toán.');
+        processSuccessOrder(); // Chạy quy trình đặt hàng
+    } else {
+        // Nếu là Tiền mặt -> Chuyển thẳng sang quy trình đặt hàng
+        processSuccessOrder();
+    }
+}
+
+// 4. Hàm xử lý Hoàn tất đơn hàng (Chạy hiệu ứng loading & chuyển trang Tracking)
+function processSuccessOrder() {
+    const pickup = document.getElementById('pickupSelect').value;
     const overlay = document.getElementById('successOverlay');
+    
+    // Hiển thị Overlay Loading thành công
     overlay.style.display = 'flex';
 
+    // Set thông tin cho trang Tracking
     document.getElementById('trackingOrderId').textContent = '#SV' + Math.floor(Math.random() * 10000);
     document.getElementById('trackingLocation').textContent = pickup;
 
+    // Đợi 2.5 giây rồi chuyển trang
     setTimeout(() => {
         overlay.style.display = 'none';
-        cart = []; updateCartCountUI();
+        
+        // Reset giỏ hàng
+        cart = []; 
+        updateCartCountUI();
         document.getElementById('customerName').value = '';
         document.getElementById('customerPhone').value = '';
         
+        // Chuyển sang trang Tracking
         navigateTo('tracking');
         startTrackingSimulation();
     }, 2500);
+}
+
+function closePaymentModal() {
+    document.getElementById('paymentModal').style.display = 'none';
+}
+
+// Đóng modal khi click ra ngoài
+window.onclick = function(event) {
+    if (event.target == document.getElementById('qualityModal')) closeQualityModal();
+    if (event.target == document.getElementById('paymentModal')) closePaymentModal();
 }
 
 // --- NAVIGATION & UI HELPERS ---
