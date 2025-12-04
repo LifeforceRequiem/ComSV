@@ -99,6 +99,7 @@
             <div class="area-tab" onclick="switchTab('khu2')">Khu 2: Cầu Giấy</div>
             <div class="area-tab" onclick="switchTab('khu3')">Khu 3: Hà Đông</div>
             <div class="area-tab" onclick="switchTab('khu4')">Khu 4: Chùa Láng</div>
+            <div class="area-tab" onclick="switchTab('khu5')">Khu 5: Xuân Phương</div>
         </div>
 
         <div id="khu1" class="area-content active">
@@ -663,6 +664,140 @@
 
             </div>
         </div>
+        <div id="khu5" class="area-content">
+            <div class="restaurant-card">
+                <div class="restaurant-header">
+                    <h3> 🍽️  Canteen ĐHQG Xuân Phương</h3>
+                    <p style="opacity:0.9"> 📍  Khu đô thị ĐHQGHN, Xuân Phương | ⭐ 4.6/5</p>
+                    <div class="quality-badge" onclick="openQualityModal('Canteen Xuân Phương', 'A')">
+                        <span class="badge-grade grade-A">A</span>
+                        <span class="badge-text"> 🛡️  Điểm Sạch: 96/100</span>
+                    </div>
+                </div>
+
+                <div class="sub-tabs-container">
+                    <button class="sub-tab-btn active" onclick="switchSubTab('k5-mon-nuoc', this)">🍜 Món Nước</button>
+                    <button class="sub-tab-btn" onclick="switchSubTab('k5-com', this)">🍚 Cơm Đĩa</button>
+                    <button class="sub-tab-btn" onclick="switchSubTab('k5-an-vat', this)">🍟 Ăn Vặt</button>
+                    <button class="sub-tab-btn" onclick="switchSubTab('k5-do-uong', this)">🥤 Đồ Uống</button>
+                </div>
+
+                <div id="k5-mon-nuoc" class="sub-content active">
+                    <div class="menu-grid">
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-ga-ha-noi-thom-ngon-dam-da-chuan-vi-truyen-thong-202201250325372338.jpg" alt="Phở gà">
+                            <h4>🍜 Phở gà</h4><p>30.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Phở gà', 30000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/Files/2022/01/25/1412805/cach-nau-pho-bo-nam-dinh-chuan-vi-thom-ngon-nhu-hang-quan-202201250230038502.jpg" alt="Phở bò">
+                            <h4>🍜 Phở bò</h4><p>35.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Phở bò', 35000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://beptruong.edu.vn/wp-content/uploads/2018/05/bun-moc-ha-noi.jpg" alt="Bún mọc">
+                            <h4>🍜 Bún mọc</h4><p>25.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bún mọc', 25000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/Files/2019/04/04/1158652/cach-nau-bun-rieu-cua-dong-mien-bac-thom-ngon-dam-da-chuan-vi-202206171542385437.jpg" alt="Bún riêu">
+                            <h4>🍜 Bún riêu</h4><p>25.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bún riêu', 25000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/2020/12/11/1313098/cach-lam-mi-trung-thit-bam-ca-chua-ngon-mieng-don-gian-cho-bua-sang-2.jpg" alt="Mì trứng thịt">
+                            <h4>🍜 Mì trứng thịt</h4><p>20.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Mì trứng thịt', 20000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://bizweb.dktcdn.net/thumb/1024x1024/100/400/734/products/maxresdefault-1-9f31d4fd-6579-4a33-8ffd-5d0608251fa0.jpg?v=1615882892007" alt="Mì xào bò">
+                            <h4>🍝 Mì xào bò</h4><p>30.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Mì xào bò', 30000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="k5-com" class="sub-content">
+                    <div class="menu-grid">
+                        <div class="meal-card">
+                            <img src="https://i.ytimg.com/vi/InxT5IWEBWk/maxresdefault.jpg" alt="Cơm gà chiên">
+                            <h4>🍗 Cơm gà chiên</h4><p>30.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Cơm gà chiên', 30000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/2021/04/CookProduct/1200-1200x676-50.jpg" alt="Cơm thịt rang">
+                            <h4>🍛 Cơm thịt rang cháy cạnh</h4><p>30.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Cơm thịt rang', 30000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/Files/2020/06/18/1263884/bien-tau-doi-vi-voi-mon-trung-chien-thit-bam-don-gian-ma-ngon-com-202201041018335025.jpg" alt="Cơm trứng thịt băm">
+                            <h4>🍳 Cơm trứng thịt băm</h4><p>25.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Cơm trứng thịt băm', 25000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/2021/07/CookProduct/0-1200x676-14.jpg" alt="Cơm sườn nướng">
+                            <h4>🍛 Cơm sườn nướng</h4><p>35.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Cơm sườn nướng', 35000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://bepxua.vn/wp-content/uploads/2020/12/com-ga-xoi-mo.jpg" alt="Cơm gà xối mỡ">
+                            <h4>🍗 Cơm gà xối mỡ</h4><p>35.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Cơm gà xối mỡ', 35000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="k5-an-vat" class="sub-content">
+                    <div class="menu-grid">
+                        <div class="meal-card">
+                            <img src="https://cdn.tgdd.vn/2021/09/CookRecipe/Avatar/120000.jpg" alt="Khoai tây chiên">
+                            <h4>🍟 Khoai tây chiên</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Khoai tây chiên', 15000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://lalago.vn/wp-content/uploads/2025/03/nem-chua-ran-ha-noi-7.jpg" alt="Nem chua rán">
+                            <h4>🌭 Nem chua rán</h4><p>20.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Nem chua rán', 20000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://banhmimahai.vn/wp-content/uploads/2021/12/fbsr.jpg" alt="Bánh mì pate trứng">
+                            <h4>🥖 Bánh mì pate trứng</h4><p>15.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Bánh mì pate trứng', 15000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://th.bing.com/th/id/R.4015bfcd66a80729047c871b4f512951?rik=IbKA3WtHS9xQig&pid=ImgRaw&r=0" alt="Xúc xích chiên">
+                            <h4>🌭 Xúc xích chiên</h4><p>10.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Xúc xích chiên', 10000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="k5-do-uong" class="sub-content">
+                    <div class="menu-grid">
+                        <div class="meal-card">
+                            <img src="https://www.unileverfoodsolutions.com.vn/dam/global-ufs/mcos/phvn/vietnam/calcmenu/recipes/VN-recipes/other/energizing-lemon-tea/main-header.jpg" alt="Trà chanh">
+                            <h4>🍋 Trà chanh</h4><p>10.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Trà chanh', 10000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://product.hstatic.net/200000768759/product/tra-tac-mat-ong-hoa-nhan_8536365b1847445093bd12ba75e33634.png" alt="Trà tắc">
+                            <h4>🍊 Trà tắc</h4><p>10.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Trà tắc', 10000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://nld.mediacdn.vn/2014/may-lam-sua-dau-nanh-1-1412734006024.jpg" alt="Sữa đậu nành">
+                            <h4>🥛 Sữa đậu nành</h4><p>8.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Sữa đậu nành', 8000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                        <div class="meal-card">
+                            <img src="https://traicayhoabien.com/wp-content/uploads/2025/02/nuoc-ngot-pepsi-lon-nhat-ban-3.jpg" alt="Nước ngọt">
+                            <h4>🥤 Nước ngọt (Lon)</h4><p>12.000đ</p>
+                            <button class="btn-order-meal" onclick="addToCart('Nước ngọt (Lon)', 12000, 'khu5')">Thêm vào giỏ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </div> <div id="order" class="page container">
         <div class="order-section">
@@ -690,6 +825,7 @@
                             <option value="khu2">Khu 2: Cầu Giấy</option>
                             <option value="khu3">Khu 3: Hà Đông</option>
                             <option value="khu4">Khu 4: Chùa Láng</option>
+                            <option value="khu5">Khu 5: Xuân Phương</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -698,7 +834,9 @@
                             <option value="">-- Chọn khu vực trước --</option>
                         </select>
                     </div>
-                    <button type="button" class="btn-order" onclick="submitOrder()"> ✅  Chốt Đơn & Thanh Toán</button>
+                    <button type="button" class="btn-order" onclick="submitOrder()"> 
+    ✅ Chốt Đơn & Thanh Toán 
+</button>
                 </form>
             </div>
         </div>
@@ -716,17 +854,10 @@
                 <div class="timeline-step" id="track-step-2"><div style="font-weight:bold;"> 🔥  Đang chế biến</div><div style="font-size:0.9rem; color:#666;">Bếp trưởng đang nấu.</div></div>
                 <div class="timeline-step" id="track-step-3"><div style="font-weight:bold;"> 🛵  Đang giao hàng</div><div style="font-size:0.9rem; color:#666;">Đơn hàng đang đến tay bạn đó.</div></div>
                 <div class="timeline-step" id="track-step-4"><div style="font-weight:bold;"> ✅  Giao hàng thành công</div><div style="font-size:0.9rem; color:#666;">Chúc ngon miệng!</div></div>
+            <div id="trackingActions" class="tracking-actions" style="display:none;">
+                <button class="btn-feedback" onclick="openFeedback()">⭐ Đánh giá dịch vụ</button>
+                <button class="btn-home" onclick="resetApp()">Đặt Đơn Mới</button>
             </div>
-            <a href="#" class="btn-home" id="btnBackHome" onclick="location.reload()">Đặt Đơn Mới</a>
-        </div>
-    </div>
-
-    <div class="success-overlay" id="successOverlay">
-        <div class="success-box">
-            <div style="font-size: 4rem; margin-bottom: 0.5rem;"> 🎉 </div>
-            <h2 style="color: #27ae60; margin-bottom: 0.5rem;">Đặt Hàng Thành Công!</h2>
-            <p style="color: #666; margin-bottom: 1.5rem;">Đang chuyển đến trang theo dõi...</p>
-            <div class="spinner"></div>
         </div>
     </div>
 
@@ -754,10 +885,31 @@
             </div>
         </div>
     </div>
-    <div id="paymentModal" class="modal">
+            <div id="qrContainer" style="display:none; text-align:center; margin-top:1.5rem; animation: fadeIn 0.5s;">
+                <p style="margin-bottom:0.5rem; font-weight:bold;">Quét mã VietQR để thanh toán:</p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoXgnU7FduTcy0Z7GyoXnMnCqLBwMwAXdiFw&s" 
+                     alt="QR Code" style="width: 200px; border-radius: 10px; border: 2px solid #27ae60;">
+                <p style="color:#666; font-size:0.9rem; margin-top:0.5rem;">Nội dung: <strong>Tên + SĐT</strong></p>
+            </div>
+
+            <div style="margin-top: 2rem; display: flex; justify-content: flex-end;">
+                <button class="btn-primary" onclick="confirmPayment()" style="padding: 0.8rem 2rem;">Tiếp theo ➡</button>
+            </div>
+        </div>
+    </div>
+<div id="successOverlay" class="success-overlay" style="display: none;">
+        <div class="success-box">
+            <div style="font-size: 4rem; margin-bottom: 0.5rem;"> 🎉 </div>
+            <h2 style="color: #27ae60; margin-bottom: 0.5rem;">Đặt Hàng Thành Công!</h2>
+            <p style="color: #666; margin-bottom: 1.5rem;">Đang chuyển đến trang theo dõi...</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+<div id="paymentModal" class="modal" style="display: none;">
         <div class="modal-content payment-content">
             <span class="modal-close" onclick="closePaymentModal()">&times;</span>
-            <h2 style="color:#27ae60; text-align:center; margin-bottom: 1.5rem;">💳 Thanh Toán</h2>
+            <h2 style="color:#27ae60; text-align:center; margin-bottom: 1.5rem;">💳 Chọn Cách Thanh Toán</h2>
             
             <div class="payment-methods">
                 <div id="method-cash" class="method-card active" onclick="selectPaymentMethod('cash')">
@@ -770,19 +922,28 @@
                 </div>
             </div>
 
-            <div id="qrContainer" style="display:none; text-align:center; margin-top:1.5rem; animation: fadeIn 0.5s;">
-                <p style="margin-bottom:0.5rem; font-weight:bold;">Quét mã VietQR để thanh toán:</p>
-                <img src="https://api.vietqr.io/image/970415-113366668888-25w7J0k.jpg?accountName=COMSV&amount=0" 
-                     alt="QR Code" style="width: 200px; border-radius: 10px; border: 2px solid #27ae60;">
-                <p style="color:#666; font-size:0.9rem; margin-top:0.5rem;">Nội dung: <strong>Tên + SĐT</strong></p>
-            </div>
-
-            <div style="margin-top: 2rem; display: flex; justify-content: flex-end;">
-                <button class="btn-primary" onclick="confirmPayment()" style="padding: 0.8rem 2rem;">Tiếp theo ➡</button>
+            <div style="margin-top: 2rem; display: flex; justify-content: center;">
+                <button class="btn-primary" onclick="processPaymentStep1()" style="width: 100%;">Tiếp theo ➡</button>
             </div>
         </div>
     </div>
 
+    <div id="qrModal" class="modal" style="display: none;">
+        <div class="modal-content payment-content" style="text-align: center;">
+            <span class="modal-close" onclick="closeQRModal()">&times;</span>
+            <h2 style="color:#27ae60; margin-bottom: 1rem;">📱 Quét Mã Thanh Toán</h2>
+            
+            <p style="margin-bottom:1rem; color:#333;">Vui lòng quét mã VietQR bên dưới:</p>
+            
+            <img id="qrImage" src="" alt="Đang tải QR..." 
+                 style="width: 250px; max-width:100%; border-radius: 10px; border: 2px solid #27ae60; display: block; margin: 0 auto 1rem auto;">
+            
+            <p style="font-size: 1.2rem; font-weight: bold; color: #d35400; margin-bottom: 0.5rem;" id="qrTotalDisplay">0đ</p>
+            <p style="color:#666; font-size:0.9rem; margin-bottom: 2rem;">Nội dung: Tên + SĐT</p>
+
+            <button class="btn-primary" onclick="processPaymentStep2()" style="width: 100%; background: #2980b9;">✅ Đã Chuyển Khoản Xong</button>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
