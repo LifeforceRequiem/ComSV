@@ -2,7 +2,6 @@
 // 1. DỮ LIỆU & CẤU HÌNH (DATA & CONFIG)
 // ===================================================
 
-// Dữ liệu các trường đại học theo 5 khu vực
 const universityData = {
     'khu1': [{name: 'Đại học Bách Khoa HN'}, {name: 'Đại học Kinh Tế Quốc Dân'}, {name: 'Đại học Xây Dựng'}],
     'khu2': [{name: 'Đại học Quốc Gia HN'}, {name: 'Đại học Sư Phạm HN'}, {name: 'Học viện Báo Chí'}],
@@ -11,7 +10,6 @@ const universityData = {
     'khu5': [{name: 'Trung tâm GDQP-AN'}, {name: 'Khu Đô thị ĐHQGHN'}, {name: 'ĐH Công Nghệ - CS2'}]
 };
 
-// Dữ liệu đánh giá chất lượng của các quán ăn
 const qualityDB = {
     'Quán Ăn Vặt Bách Kinh Xây': { 
         score: 95, grade: 'A', color: '#27ae60', 
@@ -45,14 +43,12 @@ const qualityDB = {
     }
 };
 
-// Link Google Form để đánh giá (Bạn thay link của bạn vào đây)
-const GOOGLE_FORM_LINK = "https://docs.google.com/forms/u/0/"; 
+const GOOGLE_FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSfKJspug63Psk_8aWDM6EL1Y5cauUrde7-D7YOH3zeGv1JDTQ/viewform"; 
 
 // ===================================================
-// 2. CÁC HÀM TIỆN ÍCH (HELPER FUNCTIONS)
+// 2. CÁC HÀM TIỆN ÍCH
 // ===================================================
 
-// Lấy tên hiển thị đầy đủ của khu vực
 function getAreaName(key) {
     if(key === 'khu1') return 'Khu 1 (Bách-Kinh-Xây)';
     if(key === 'khu2') return 'Khu 2 (Cầu Giấy)';
@@ -62,36 +58,26 @@ function getAreaName(key) {
     return key;
 }
 
-// Chuyển trang (Home <-> Menu <-> Order <-> Tracking)
 function navigateTo(pageId) {
-    // Ẩn tất cả các trang
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // Hiện trang được chọn
     document.getElementById(pageId).classList.add('active');
     
-    // Cập nhật trạng thái menu (active link)
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     const link = document.querySelector(`.nav-link[data-page="${pageId}"]`);
     if(link) link.classList.add('active');
     
     window.scrollTo(0, 0);
     
-    // Nếu vào trang Menu thì mặc định chọn Khu 1
     if (pageId === 'menu') switchTab('khu1');
 }
 
-// Chuyển Tab Khu vực (Khu 1 -> Khu 5)
 function switchTab(areaId) {
-    // Ẩn nội dung các khu
     document.querySelectorAll('.area-content').forEach(c => c.classList.remove('active'));
-    // Hiện nội dung khu được chọn
     document.getElementById(areaId).classList.add('active');
     
-    // Cập nhật trạng thái nút bấm (Tabs)
     document.querySelectorAll('.area-tab').forEach(t => t.classList.remove('active'));
     const tabs = document.querySelectorAll('.area-tab');
     
-    // Map areaId với thứ tự tab (0-4)
     if (areaId === 'khu1' && tabs[0]) tabs[0].classList.add('active');
     if (areaId === 'khu2' && tabs[1]) tabs[1].classList.add('active');
     if (areaId === 'khu3' && tabs[2]) tabs[2].classList.add('active');
@@ -99,28 +85,20 @@ function switchTab(areaId) {
     if (areaId === 'khu5' && tabs[4]) tabs[4].classList.add('active');
 }
 
-// Chuyển Tab con (Món chính / Ăn vặt / Đồ uống)
 function switchSubTab(subId, btnElement) {
     const parentArea = btnElement.closest('.area-content');
-    
-    // Ẩn tất cả sub-content trong khu vực đó
     parentArea.querySelectorAll('.sub-content').forEach(el => el.classList.remove('active'));
-    
-    // Hiện sub-content được chọn
     document.getElementById(subId).classList.add('active');
-    
-    // Xử lý trạng thái nút bấm
     parentArea.querySelectorAll('.sub-tab-btn').forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
 }
 
 // ===================================================
-// 3. LOGIC GIỎ HÀNG (CART SYSTEM)
+// 3. LOGIC GIỎ HÀNG
 // ===================================================
 let cart = [];
 
 function addToCart(mealName, price, areaKey) {
-    // Kiểm tra xem giỏ hàng có đang chứa món của khu vực khác không
     if (cart.length > 0 && cart[0].area !== areaKey) {
         let confirmSwitch = confirm(`Giỏ hàng đang có món của ${getAreaName(cart[0].area)}.\nBạn chỉ được đặt món cùng 1 khu vực.\n\nXóa giỏ hàng cũ để đặt món mới?`);
         if (confirmSwitch) {
@@ -130,7 +108,6 @@ function addToCart(mealName, price, areaKey) {
         }
     }
 
-    // Thêm món hoặc tăng số lượng
     const existingItem = cart.find(item => item.name === mealName);
     if (existingItem) {
         existingItem.quantity++;
@@ -140,7 +117,6 @@ function addToCart(mealName, price, areaKey) {
     
     updateCartCountUI();
     
-    // Hiệu ứng nút bấm "Đã thêm"
     const btn = event.target;
     const originalText = btn.innerText;
     btn.innerText = "✅ Đã thêm";
@@ -162,7 +138,7 @@ function changeQuantity(index, delta) {
         removeFromCart(index);
     } else {
         updateCartCountUI();
-        openCartPage(); // Render lại trang giỏ hàng
+        openCartPage();
     }
 }
 
@@ -172,7 +148,6 @@ function removeFromCart(index) {
     openCartPage(); 
 }
 
-// Hiển thị trang Giỏ hàng & Thanh toán
 function openCartPage() {
     navigateTo('order');
     const container = document.getElementById('cartListContainer');
@@ -205,14 +180,11 @@ function openCartPage() {
                 </div>`;
         });
         totalEl.innerText = total.toLocaleString() + 'đ';
-
-        // Tự động chọn khu vực dựa trên món trong giỏ
         areaSelect.value = cart[0].area;
         loadUniversities(); 
     }
 }
 
-// Load danh sách trường học dựa trên khu vực đã chọn
 function loadUniversities() {
     const areaKey = document.getElementById('areaSelect').value;
     const pickupSelect = document.getElementById('pickupSelect');
@@ -234,9 +206,8 @@ function loadUniversities() {
 }
 
 // ===================================================
-// 4. LOGIC THANH TOÁN & ĐẶT HÀNG (PAYMENT)
+// 4. LOGIC THANH TOÁN & ĐẶT HÀNG
 // ===================================================
- // Mặc định tiền mặt
 
 function submitOrder() {
     const name = document.getElementById('customerName').value;
@@ -244,7 +215,6 @@ function submitOrder() {
     const area = document.getElementById('areaSelect').value;
     const pickup = document.getElementById('pickupSelect').value;
 
-    // Validate dữ liệu
     if (cart.length === 0) { alert('Giỏ hàng trống!'); return; }
     if (!name || !phone) { alert('Vui lòng nhập tên và SĐT!'); return; }
     
@@ -257,18 +227,16 @@ function submitOrder() {
 
     if (!pickup) { alert('Vui lòng chọn trường đại học cụ thể!'); return; }
 
-    // Mở Modal thanh toán
     const modal = document.getElementById('paymentModal');
     if(modal) {
         modal.style.display = 'block';
-        selectPaymentMethod('cash'); // Reset về tiền mặt
+        selectPaymentMethod('cash');
     } else {
         alert('Lỗi: Không tìm thấy modal thanh toán. Vui lòng kiểm tra lại file HTML.');
     }
 }
 let selectedPaymentMethod = 'cash';
 
-// Hàm chọn phương thức (Đã sửa lại theo logic của phiên bản cũ chạy ổn định)
 function selectPaymentMethod(method) {
     selectedPaymentMethod = method;
     document.getElementById('method-cash').classList.remove('active');
@@ -276,82 +244,54 @@ function selectPaymentMethod(method) {
     document.getElementById(`method-${method}`).classList.add('active');
 }
 
-// Bước 2: Xử lý khi ấn nút "Tiếp theo" ở Modal 1
 function processPaymentStep1() {
-    // Ẩn modal chọn phương thức ngay lập tức
     document.getElementById('paymentModal').style.display = 'none';
 
     if (selectedPaymentMethod === 'cash') {
-        // Tiền mặt -> Chuyển sang thành công luôn
         processSuccessOrder();
     } else {
-        // Chuyển khoản -> Mở Modal QR
         openQRModal();
     }
 }
 
-// Bước 3: Mở Modal QR
 function openQRModal() {
     const qrModal = document.getElementById('qrModal');
     const qrImg = document.getElementById('qrImage');
     const qrTotalDisplay = document.getElementById('qrTotalDisplay');
 
-    // Hiện modal trước
     qrModal.style.display = 'block';
 
-    // Tính tiền
     let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     
-    // Hiển thị số tiền
     if (qrTotalDisplay) qrTotalDisplay.innerText = total.toLocaleString() + 'đ';
 
-    // Tạo QR Code
-    const bankId = 'ICB'; 
-    const accountNo = '113366668888'; 
+    const bankId = 'TCB'; 
+    const accountNo = '19074755890019'; 
     const template = 'compact';
-    const qrSource = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${total}&addInfo=Thanh toan ComSV&accountName=COMSV`;
+    const qrSource = `https://img.vietqr.io/image/${bankId}-${accountNo}-${template}.png?amount=${total}&addInfo=Thanh toan ComSV&accountName=NGUYEN MINH QUANG`;
 
-    // Gán ảnh
     if (qrImg) qrImg.src = qrSource;
 }
 
-// Bước 4: Xử lý khi ấn "Đã Chuyển Khoản Xong"
-// Bước 4: Xử lý khi ấn nút "Đã Chuyển Khoản Xong"
 function processPaymentStep2() {
-    // 1. Đóng cái Modal QR lại trước cho gọn
     document.getElementById('qrModal').style.display = 'none';
 
-    // 2. Dùng setTimeout 1 xíu để Modal QR tắt hẳn rồi mới hiện thông báo
     setTimeout(() => {
-        // === ĐÂY LÀ HỘP THOẠI BẠN CẦN ===
-        // Trình duyệt sẽ dừng lại ở đây và hiện nút OK.
-        // Người dùng BẮT BUỘC phải ấn OK thì code mới chạy tiếp dòng dưới.
         alert("✅ THANH TOÁN THÀNH CÔNG!\n\nHệ thống đã nhận được tiền chuyển khoản.\nNhấn OK để hoàn tất đơn hàng.");
-
-        // 3. Sau khi người dùng ấn OK ở trên, mới gọi hàm hiển thị màn hình chúc mừng
         processSuccessOrder();
     }, 100);
 }
 
 function processSuccessOrder() {
-    console.log("Đang xử lý đơn hàng thành công..."); // Kiểm tra F12 nếu lỗi
-
     try {
-        // 1. Đảm bảo đóng tất cả các modal khác
         document.getElementById('paymentModal').style.display = 'none';
         document.getElementById('qrModal').style.display = 'none';
         
-        // 2. Lấy Overlay và hiển thị cưỡng chế
         const overlay = document.getElementById('successOverlay');
         if (overlay) {
-            overlay.style.display = 'flex'; // Bắt buộc hiện
-            overlay.style.zIndex = '99999'; // Đè lên tất cả
-        } else {
-            console.error("Lỗi: Không tìm thấy successOverlay trong HTML");
-            alert("Đặt hàng thành công! (Lỗi hiển thị hiệu ứng)");
-            finalizeOrder(); // Vẫn chuyển trang dù lỗi hiển thị
-            return;
-        }
+            overlay.style.display = 'flex';
+            overlay.style.zIndex = '99999';
+        } 
         const pickupSelect = document.getElementById('pickupSelect');
         const trackingId = document.getElementById('trackingOrderId');
         const trackingLoc = document.getElementById('trackingLocation');
@@ -359,32 +299,28 @@ function processSuccessOrder() {
         if (trackingId) trackingId.textContent = '#SV' + Math.floor(Math.random() * 10000);
         if (trackingLoc && pickupSelect) trackingLoc.textContent = pickupSelect.value;
 
-        // 4. Đợi 2.5 giây rồi chuyển trang
         setTimeout(() => {
             finalizeOrder();
         }, 2500);
 
     } catch (e) {
         console.error("Lỗi trong processSuccessOrder:", e);
-        alert("Có lỗi xảy ra, nhưng đơn của bạn đã được ghi nhận.");
         finalizeOrder();
     }
 }
+
 function finalizeOrder() {
     const overlay = document.getElementById('successOverlay');
     if(overlay) overlay.style.display = 'none';
 
-    // Reset dữ liệu
     cart = []; 
     updateCartCountUI();
     
-    // Reset form input
     const nameInput = document.getElementById('customerName');
     const phoneInput = document.getElementById('customerPhone');
     if(nameInput) nameInput.value = '';
     if(phoneInput) phoneInput.value = '';
     
-    // Chuyển trang
     navigateTo('tracking');
     startTrackingSimulation();
 }
@@ -397,15 +333,12 @@ function startTrackingSimulation() {
     const steps = ['track-step-1', 'track-step-2', 'track-step-3', 'track-step-4'];
     let current = 0;
     
-    // Reset trạng thái
     steps.forEach(id => { const el = document.getElementById(id); el.classList.remove('active', 'completed'); });
     document.getElementById(steps[0]).classList.add('active');
     
-    // Ẩn các nút hành động (Đánh giá / Đặt mới) lúc bắt đầu
     const actions = document.getElementById('trackingActions');
     if(actions) actions.style.display = 'none';
 
-    // Chạy giả lập timeline
     const interval = setInterval(() => {
         current++;
         if (current < steps.length) {
@@ -413,34 +346,27 @@ function startTrackingSimulation() {
             document.getElementById(steps[current-1]).classList.add('completed');
             document.getElementById(steps[current]).classList.add('active');
         } else {
-            // Hoàn thành
             document.getElementById(steps[current-1]).classList.remove('active');
             document.getElementById(steps[current-1]).classList.add('completed');
             
-            // Hiện nút đánh giá
             if(actions) actions.style.display = 'flex';
             
             clearInterval(interval);
         }
-    }, 2000); // 2 giây mỗi bước
+    }, 2000); 
 }
 
-// Mở link Google Form & Reset app
 function openFeedback() {
     window.open(GOOGLE_FORM_LINK, '_blank');
     resetApp();
 }
 
-// Reset app về trang chủ
 function resetApp() {
-    // Đảm bảo giỏ hàng sạch
     cart = [];
     updateCartCountUI();
-    
     navigateTo('home');
 }
 
-// Mở Modal Chất Lượng (Quality)
 function openQualityModal(name, type) {
     const data = qualityDB[name];
     if(!data) {
@@ -469,12 +395,10 @@ function openQualityModal(name, type) {
     document.getElementById('qualityModal').style.display = 'block';
 }
 
-// Các hàm đóng Modal
 function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
 function closeQRModal() { document.getElementById('qrModal').style.display = 'none'; }
 function closeQualityModal() { document.getElementById('qualityModal').style.display = 'none'; }
 
-// Đóng modal khi click ra vùng đen bên ngoài
 window.onclick = function(event) {
     if (event.target == document.getElementById('qualityModal')) closeQualityModal();
     if (event.target == document.getElementById('paymentModal')) closePaymentModal();
