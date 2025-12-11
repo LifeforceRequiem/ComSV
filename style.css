@@ -202,6 +202,7 @@ nav a:hover, nav a.active { background: rgba(255,255,255,0.2); }
 .certifications { display: flex; gap: 10px; margin: 10px 0; }
 .cert-tag { background: #e3f2fd; color: #1565c0; padding: 4px 10px; border-radius: 15px; font-size: 0.85rem; font-weight: bold; border: 1px solid #90caf9; }
 .history-item { display: flex; justify-content: space-between; padding: 10px; background: #f8f9fa; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid #ccc; }
+
 /* PAYMENT MODAL STYLES */
 .payment-content {
     background-color: #fefefe;
